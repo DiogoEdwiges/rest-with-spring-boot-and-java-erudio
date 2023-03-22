@@ -2,21 +2,23 @@ package br.com.erudio;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class GreetingController {
+public class MathController {
 
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
-	@RequestMapping("/greeting")
-	public Greeting greeting(
-			@RequestParam(value = "name", defaultValue = "World") 
-			String name) {
+	@RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double sum(
+			@PathVariable(value = "numberOne") 
+			String numberOne) {
 		System.out.println("TESTE");
-		return new Greeting(counter.incrementAndGet(), String.format(template, name));
+		return 1D;
 	}
 }
